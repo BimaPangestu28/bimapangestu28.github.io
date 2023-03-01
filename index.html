@@ -5,8 +5,95 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/montserrat');
+
+        * {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        #container {
+            width: 720px;
+            margin: 0 auto;
+            text-align: center;
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            align-items: center;
+            padding-top: 50px;
+        }
+
+        h2 {
+            margin: 0;
+            margin-top: 20px;
+        }
+    </style>
   </head>
   <body>
-    tes
+    <div id="container">
+        <img src="./default.webp" alt="" width="200px" id="image-icon">
+        
+        <div id="content">
+            <h2>Babe</h2>
+            <h3>Sayang gak sama aku?</h3>
+
+            <div class="option--button">
+                <button id="reject">Enggak</button>
+                <button id="approve">Sayang banget</button>
+            </div>
+        </div>
+
+        <div id="content-approve" style="display: none;">
+            <h2>Maaaciw babeeeeeeeeeeeee</h2>
+        </div>
+
+        <div id="video" style="display: none;">
+            <video src="./video.mp4" id="content-video"></video>
+        </div>
+    </div>
+
+    <script>
+        let reject = 0;
+
+        document.getElementById('reject').addEventListener('click', () => {
+            reject += 1;
+
+            switch (reject) {
+                case 1:
+                    document.getElementById('image-icon').setAttribute('src', './reject-1.jpeg')
+                    break;
+
+                case 2:
+                    document.getElementById('image-icon').setAttribute('src', './reject-2.gif')
+                    break;
+
+                case 3:
+                    document.getElementById('image-icon').setAttribute('src', './reject-3.gif')
+                    document.getElementById('image-icon').setAttribute('width', '300px')
+                    document.getElementById('content').style = 'display: none;'
+                    break;
+            
+                default:
+                    break;
+            }
+        })
+
+        document.getElementById('approve').addEventListener('click', () => {
+            document.getElementById('image-icon').style = 'display: none;'
+            document.getElementById('content').style = 'display: none;'
+            document.getElementById('video').style = 'display: block;'
+
+            document.getElementById('content-video').play()
+
+            setTimeout(() => {
+                document.getElementById('video').style = 'display: none;'
+                document.getElementById('image-icon').style = 'display: block;'
+                document.getElementById('content-approve').style = 'display: block;'
+                document.getElementById('image-icon').setAttribute('width', '300px')
+                document.getElementById('image-icon').setAttribute('src', './approve-1.gif')
+            }, 23000)
+        })
+    </script>
   </body>
 </html>
